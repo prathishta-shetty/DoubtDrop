@@ -8,60 +8,74 @@ html,body{
     width: 100%;
     height:100%;
     background: #161515;
-    font-family:"Inter", Arial;
+    font-family:"Inter";
 }
 
 nav{
     width: 100%;
     height: 12vh;
     display: flex;
-    gap: 50vh;
+    background-color: #161515;
 }
 
 #company{
     align-items: center;
     width: 30vh;
     display: flex;
-    gap: 2vh;
+    gap: 1vh;
 }
 
 #company img{
-    margin-left: 10vh;
-    margin-top: 5vh;
+    margin-left: 4vh;
     width: auto;
-    height: 5vh;
+    height: 4vh;
 }
 
 #company p{
-    margin-top: 5vh;
     color: white;
-    font-size: 25px;
+    font-size: 16px;
 }
 
-#auth{
-    margin-top: 3vh;
-    width: 125vh;
-    height: 11vh;
+#info{
+    margin-top: 2vh;
+    width: 110vh;
+    height: 10vh;
     background-color: rgb(255, 255, 255);
-    border-radius: 50px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 90px;
+    color: #5B9199;
+}
+
+
+
+#auth{
+    width: 60vh;
+    height: 12vh;
+    margin-left: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .auth-btn{
-    height: 8vh;
-    width: 30vh;
-    border:none;
-    border-color: #161515;
-    background-color: #ffffff;
-    color: #161515;
-    font-size: 20px;
+    border-radius: 50px;
+    height: 7vh;
+    width: 26vh;
+    border-color: #ffffff;
+    border-width: 1px;
+    background-color: #161515;
+    color: #ffffff;
+    font-size: 16px;
 }
 
 .auth-btn:hover{
-    color: rgb(51, 174, 174);
+    background-color: #6abcc9;
+    border-color:#6abcc9;
     transform: scale(1.1);
     transition: 0.2s;   
 }
@@ -70,31 +84,48 @@ nav{
 #landing-pg{
     height: 85vh;
     width: 100%;
-    margin-top: 2vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
 }
 
 #landing-pg #background{
-    height: 80vh;
+    height: 85vh;
     width: 201vh;
     border-radius: 40px;
 }
 
 #textbox{
+    margin-bottom: 40vh;
     position: absolute;
-    margin-right: 50%;
-    margin-bottom: 15%;
-    
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    justify-content: center;
+    align-content: center;
+
 }
 
-#textbox p{
+#part-1-text{
     font-size: 60px;
+    font-weight: 600;
+}
+
+
+#part-2-text{
+    background-color: #161515;
+    border-radius: 50px;
+    width: 50vh;
+    height: 9vh;
+    font-size: 50px;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #textbox #anon{
-    color: rgb(54, 148, 148);
+    color: #ffffff;
 }
