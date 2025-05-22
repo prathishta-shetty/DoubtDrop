@@ -14,21 +14,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main>
-        <div id="part-1">
-            <p>Hello, Student!</p>
-        </div>
-        <div id="part-2">
-            <div id="join">
-                <h2>JOIN YOUR CLASS</h2>
-                <form id="joinForm">
-                    <input type="text" id="classCode" placeholder="Enter Class Code" required />
-                    <button id="submit" type="submit">Join Class</button>
-                </form>
-            
+    <div id="container">
+        <div id="box-1">
+            <div id="up">
+                <div id="Greeting">
+                    <p id="Hello">Hello,</p>
+                    <p id="Student">Student!</p>
+                </div>
             </div>
         </div>
-    </main>
-    <script type="module" src="firebase-config.js"></script>
+
+        <div id="box-2">
+            <div id="info">
+                <p>Join Anonymously</p>
+                <form>
+                    <div id="auth">
+                        <input type="text" id="classCode" placeholder="Enter Class Code" required>
+                        <button>Join</button>                       
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>

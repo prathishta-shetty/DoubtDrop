@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -7,80 +16,94 @@
 html,body{
     width: 100%;
     height:100%;
-    font-family:"Inter", "Poppins";
-}
-
-main{
     display: flex;
-}
-
-#part-1{
+    justify-content: center;
+    align-items: center;
     background-color: #161515;
-    height: 100vh;
-    width: 80vh;
+    font-family: "Montserrat";
+}
+
+#container{
     display: flex;
-    justify-content: center;
+    height: 60%;
+    width: 50%;
+    background-color:#ffffff;
+    border-radius: 25px;
 }
 
-#part-1 p{
-    padding-top: 30%;
-    color: white;
-    font-size: 50px;
-    font-weight: 500;
+#box-1{
+    background: linear-gradient(to right, #5c6bc0a1, #2da0a8);;
+    width: 50%;
+    height: 100%;
+    border-radius: 25px;
 }
 
-#part-2{
-    height: 100vh;
-    width: 130vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#Greeting{
+    padding: 28px 0px 5px 25px;
 }
 
-#part-2 #join{
-    height: 80vh;
-    width: 80vh;
+p#Hello{
+    font-size:50px;
+    font-weight: 600;
+    font-style: italic;
+    color: #ffffff;
+}
+
+p#Student{
+    font-size:50px;
+    font-weight: 600;
+    color:#ffffff;
+}
+
+
+#box-2{
+    width: 50%;
+    height: 100%;
+
+}
+
+#info{
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#joinForm{
-    display: flex;
-    flex-direction: column;
     gap: 30px;
+}
+
+#info p{
+    font-size: 30px;
+    font-weight: 600;
+    color: #161515;
+}
+
+#auth{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-input{
+#auth #classCode{
+    width: 250px;
+    height: 50px;
+    border: 1.5px solid #161515;
+    border-radius: 50px;
     padding-left: 20px;
-    font-size: 15px;
 }
 
-#classCode{
-    margin-top: 20px;
-    height: 8vh;
-    width: 60vh;
-    border-radius: 50px;
-    border: none;
-    background-color: rgb(233, 234, 236);
-}
-
-
-#submit{
-    height: 8vh;
-    width: 30vh;
-    border-radius: 50px;
-    border: none;
-    background-color: #161515;
-    color: white;
-    font-size: 15px;
-}
-
-#submit:hover{
-    background-color: rgb(59, 185, 210);
-    color: #161515;
-    transition: 0.2s;
+#auth button{
+    background-color: #2da0a8;
+    color: #fff;
+    font-size: 12px;
+    width: 100px;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    cursor: pointer;
 }
