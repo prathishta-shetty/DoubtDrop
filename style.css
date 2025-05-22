@@ -41,8 +41,8 @@ nav{
     width: 110vh;
     height: 10vh;
     background-color: rgb(255, 255, 255);
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,6 +80,9 @@ nav{
     transition: 0.2s;   
 }
 
+#page-1{
+    position: relative;
+}
 
 #landing-pg{
     height: 85vh;
@@ -98,23 +101,31 @@ nav{
 }
 
 #textbox{
-    margin-bottom: 40vh;
+    margin-bottom: 45vh;
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-    justify-content: center;
-    align-content: center;
+    justify-items: center;
 
 }
 
 #part-1-text{
     font-size: 60px;
     font-weight: 600;
+    display: flex;
+}
+
+#K{
+    filter: blur(1.5px);
+    margin-right: 2vh;
 }
 
 
+#DO{
+    filter: blur(1.5px);
+    margin-left: 2vh;
+}
+
 #part-2-text{
+    margin-top: 2vh;
     background-color: #161515;
     border-radius: 50px;
     width: 50vh;
@@ -128,4 +139,195 @@ nav{
 
 #textbox #anon{
     color: #ffffff;
+    margin-bottom: 1vh;
+}
+
+#mockup{
+    position: absolute;
+    
+}
+
+#mockup img{
+    height: 53vh;
+    margin-top: 38vh;
+    width:auto;
+    margin-right: 15vh;
+    
+}
+
+#stud-comment{
+    background-color: #ffffff;
+    width: 50vh;
+    height: 25vh;
+    position: absolute;
+    bottom: 110px;
+    left: -245px;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px -12px 21px -8px rgba(91,91,91,0.65); 
+    box-shadow: 0px -12px 21px -8px rgba(91,91,91,0.65);
+}
+
+#category{
+    display: flex;
+}
+
+#subject{
+    background-color: #B9D5DD;
+    width: 19vh;
+    height: 4vh;
+    position: relative;
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-left: 16px;
+
+}
+
+#subject p{
+    width: 19vh;
+    height: 4vh;
+    position: relative;
+    border-radius: 25px;
+    margin-top: 6px;
+    margin-left: 25px;
+    font-size: 13px;
+    color: #587881;
+}
+
+#teachName{
+    background-color: #497684;
+    width: 25vh;
+    height: 4vh;
+    position: relative;
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-left: 8px;
+
+}
+
+#teachName p{
+    width: 19vh;
+    height: 4vh;
+    position: relative;
+    border-radius: 25px;
+    margin-top: 6px;
+    margin-left: 25px;
+    font-size: 13px;
+    color: #B9D5DD;
+}
+
+#studDoubt{
+    background-color: #dcd9d9;
+    width: 45vh;
+    height: 15vh;
+    position: relative;
+    border-radius: 25px;
+    margin-top: 15px;
+    margin-left: 16px;
+}
+
+#userName{
+    width: 45vh;
+    height: 5vh;
+    position: relative;
+    margin-top: 15px;
+    display: flex;
+}
+
+#userName img{
+    height: 5vh;
+    position: relative;
+    margin-top: 5px;
+    margin-left: 9px;
+    
+}
+
+#userName p{
+    position: absolute;
+    font-size: 13px; 
+    margin-top: 13px;
+    margin-left: 50px;
+}
+
+#doubt{
+    margin-top: 9px;
+    padding-left: 5%;
+}
+
+#doubt p{
+    font-size: 13px;
+
+}
+
+#teach-comment{
+    background-color: #ffffff;
+    width: 70vh;
+    height: 27vh;
+    position: absolute;
+    bottom: 180px;
+    left: 405px;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px -12px 21px -8px rgba(91,91,91,0.65); 
+    box-shadow: 0px -12px 21px -8px rgba(91,91,91,0.65);
+}
+
+#reply{
+    width: 45vh;
+    height: 2vh;
+    position: relative;
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-left: 16px;
+
+}
+
+
+#reply p{
+    position: relative;
+    margin-top: 6px;
+    margin-left: 10px;
+    font-size: 13px;
+    font-style: italic;
+}
+
+#teachReply{
+    background-color: #dcd9d9;
+    width: 65vh;
+    height: 19vh;
+    position: relative;
+    border-radius: 25px;
+    margin-left: 16px;
+}
+
+#teachUserName{
+    width: 45vh;
+    height: 5vh;
+    position: relative;
+    margin-top: 15px;
+    display: flex;
+}
+
+#teachUserName img{
+    height: 4vh;
+    position: relative;
+    margin-top: 5px;
+    margin-left: 20px;
+    
+}
+
+#teachUserName p{
+    position: absolute;
+    font-size: 13px; 
+    margin-top: 13px;
+    margin-left: 60px;
+}
+
+#answer{
+    margin-top: 4px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#answer p{
+    font-size: 13px;
+
 }
