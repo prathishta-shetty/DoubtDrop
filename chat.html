@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Class Chat</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #e5ddd5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: #075e54;
+      color: white;
+      padding: 10px;
+      font-size: 20px;
+    }
+    #chat {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    .message {
+      max-width: 60%;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #dcf8c6;
+      align-self: flex-end;
+    }
+    .teacher {
+      background-color: #fff;
+      align-self: flex-start;
+    }
+    #input-area {
+      display: flex;
+      padding: 10px;
+      background-color: white;
+    }
+    #input-area input {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #input-area button {
+      padding: 10px;
+      background-color: #075e54;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>Class Chat</header>
+
+<div id="chat"></div>
+
+<div id="input-area">
+  <input type="text" id="messageInput" placeholder="Type a message...">
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById('messageInput');
+    const message = input.value.trim();
+    if (message === '') return;
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message';
+    messageDiv.innerText = message;
+
+    document.getElementById('chat').appendChild(messageDiv);
+    input.value = '';
+    input.focus();
+  }
+</script>
+
+</body>
+</html>
