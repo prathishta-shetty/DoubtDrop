@@ -66,7 +66,6 @@ loginForm?.addEventListener("submit", (e) => {
     });
 });
 
-// 🔥 Google Sign-In on clicking Google icon
 document.querySelectorAll(".fa-google-plus-g").forEach((icon) => {
   icon.addEventListener("click", () => {
     signInWithPopup(auth, provider)
@@ -81,3 +80,4 @@ document.querySelectorAll(".fa-google-plus-g").forEach((icon) => {
       });
   });
 });
+
