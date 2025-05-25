@@ -73,6 +73,7 @@ document.querySelectorAll(".fa-google-plus-g").forEach((icon) => {
         const user = result.user;
         alert(`Welcome, ${user.displayName}!`);
         console.log("User info:", user);
+        window.location.href="class.html";
         // Optional: redirect to dashboard
       })
       .catch((error) => {
