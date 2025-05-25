@@ -2,26 +2,252 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DoubtDrop</title>
-  <link rel="stylesheet" href="chatbox.css">
+  <title>DoubtDrop - Class Chat</title>
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e5ddd5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #2d9d90;
+      color: white;
+      padding: 15px;
+      font-size: 18px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .class-name {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .class-code {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .user-info {
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .leave-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .leave-btn:hover {
+      background-color: #c82333;
+    }
+
+    #chat {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 120px);
+    }
+
+    .message {
+      max-width: 70%;
+      margin: 8px;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background-color: #dcf8c6;
+      align-self: flex-end;
+      color: #000;
+      word-wrap: break-word;
+      position: relative;
+    }
+
+    .message.teacher {
+      background-color: #fff3cd;
+      align-self: flex-start;
+      border-left: 4px solid #1a73e8;
+    }
+
+    .message.student {
+      background-color: #fff;
+      align-self: flex-start;
+    }
+
+    .message.own {
+      background-color: #dcf8c6;
+      align-self: flex-end;
+    }
+
+    .message-header {
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .username {
+      color: #1a73e8;
+    }
+
+    .username.teacher {
+      color: #e91e63;
+    }
+
+    .timestamp {
+      font-size: 10px;
+      color: #666;
+      margin-left: 8px;
+    }
+
+    .message-content {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    #input-area {
+      display: flex;
+      padding: 15px;
+      background-color: white;
+      border-top: 1px solid #ddd;
+      gap: 10px;
+    }
+
+    #messageInput {
+      flex: 1;
+      padding: 12px 18px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 25px;
+      outline: none;
+      resize: none;
+      max-height: 100px;
+    }
+
+    #messageInput:focus {
+      border-color: #2d9d90;
+      box-shadow: 0 0 0 2px rgba(45, 157, 144, 0.2);
+    }
+
+    #sendBtn {
+      padding: 12px 24px;
+      background-color: #075e54;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 16px;
+      transition: background-color 0.2s;
+    }
+
+    #sendBtn:hover {
+      background-color: #064e45;
+    }
+
+    #sendBtn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .typing-indicator {
+      display: none;
+      padding: 10px;
+      font-style: italic;
+      color: #666;
+      font-size: 12px;
+    }
+
+    .online-count {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .connection-status {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 12px;
+      background-color: #28a745;
+      color: white;
+      z-index: 1000;
+    }
+
+    .connection-status.disconnected {
+      background-color: #dc3545;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 10px;
+        font-size: 16px;
+      }
+      
+      .message {
+        max-width: 85%;
+      }
+      
+      #input-area {
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>CLASS CHAT</header>
+<div class="connection-status" id="connectionStatus">Connected</div>
+
+<header>
+  <div class="header-info">
+    <div class="class-name" id="className">Loading...</div>
+    <div class="class-code" id="classCode">Code: ---</div>
+  </div>
+  <div class="user-info">
+    <div id="userRole">Loading...</div>
+    <div class="online-count" id="onlineCount">0 online</div>
+    <button class="leave-btn" onclick="leaveClass()">Leave</button>
+  </div>
+</header>
 
 <div id="chat"></div>
+<div class="typing-indicator" id="typingIndicator">Someone is typing...</div>
 <div id="input-area">
-  <input type="text" id="messageInput" placeholder="Ask your doubts...">
-  <button onclick="sendMessage()">Send</button>
+  <textarea id="messageInput" placeholder="Ask your doubts..." rows="1"></textarea>
+  <button id="sendBtn" onclick="sendMessage()">Send</button>
 </div>
 
-
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="chatbox.js"></script>
 </body>
 </html>

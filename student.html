@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Login</title>
     <link rel="stylesheet" href="student.css">
     <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <button id="backButton" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i> Back
+    </button>
     <div id="container">
         <div id="box-1">
             <div id="up">
@@ -33,17 +32,131 @@
         <div id="box-2">
             <div id="info">
                 <p>Join Anonymously</p>
-                <form onsubmit="return joinClass(event)">
+                <form id="joinForm">
                     <div id="auth">
                         <input type="text" id="classCode" placeholder="Enter Class Code" required>
-                        <button type="submit">Join</button>
+                        <button type="submit" id="joinBtn">Join</button>
                     </div>
                 </form>
+                <div id="errorMessage" style="color: #dc3545; margin-top: 15px; text-align: center; display: none;">
+                </div>
+                <div id="loadingMessage" style="color: #666; margin-top: 15px; text-align: center; display: none;">
+                    Joining class...
+                </div>
             </div>
         </div>
-
     </div>
-    <script src="student.js"></script>
+
+    <script type="module">
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-firestore.js";
+        import { app } from "./firebase-config.js";
+
+        const db = getFirestore(app);
+
+        // Generate random anonymous username
+        function generateRandomUsername() {
+            const adjectives = ['Anonymous', 'Mystery', 'Silent', 'Curious', 'Wise', 'Quick', 'Bright', 'Swift', 'Bold', 'Sharp'];
+            const nouns = ['Student', 'Learner', 'Scholar', 'Pupil', 'Mind', 'Seeker', 'Thinker', 'Explorer', 'Questioner', 'Reader'];
+            const randomNum = Math.floor(Math.random() * 999) + 1;
+
+            const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const noun = nouns[Math.floor(Math.random() * nouns.length)];
+
+            return `${adjective}_${noun}_${randomNum}`;
+        }
+
+        // Handle form submission
+        document.getElementById('joinForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const classCodeInput = document.getElementById('classCode');
+            const joinBtn = document.getElementById('joinBtn');
+            const errorMsg = document.getElementById('errorMessage');
+            const loadingMsg = document.getElementById('loadingMessage');
+
+            const enteredCode = classCodeInput.value.trim().toUpperCase();
+
+            if (!enteredCode) {
+                showError('Please enter a class code');
+                return;
+            }
+
+            // Show loading state
+            joinBtn.disabled = true;
+            joinBtn.textContent = 'Joining...';
+            errorMsg.style.display = 'none';
+            loadingMsg.style.display = 'block';
+
+            try {
+                // Check if class exists
+                const classQuery = query(
+                    collection(db, 'classes'),
+                    where('classCode', '==', enteredCode),
+                    where('isActive', '==', true)
+                );
+
+                const snapshot = await getDocs(classQuery);
+
+                if (snapshot.empty) {
+                    showError('Invalid class code. Please check and try again.');
+                    return;
+                }
+
+                // Class found, get class data
+                const classDoc = snapshot.docs[0];
+                const classData = classDoc.data();
+
+                // Generate random username for this student
+                const randomUsername = generateRandomUsername();
+
+                // Store class info for chat page
+                const classInfo = {
+                    classId: classDoc.id,
+                    classCode: classData.classCode,
+                    className: classData.className,
+                    teacherName: classData.teacherName,
+                    userRole: 'student',
+                    userName: randomUsername
+                };
+
+                // Store in sessionStorage
+                sessionStorage.setItem('currentClass', JSON.stringify(classInfo));
+
+                // Redirect to chat
+                window.location.href = 'chat.html';
+
+            } catch (error) {
+                console.error('Error joining class:', error);
+                showError('Failed to join class. Please try again.');
+            } finally {
+                joinBtn.disabled = false;
+                joinBtn.textContent = 'Join';
+                loadingMsg.style.display = 'none';
+            }
+        });
+
+        function showError(message) {
+            const errorMsg = document.getElementById('errorMessage');
+            errorMsg.textContent = message;
+            errorMsg.style.display = 'block';
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('classCode').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('joinForm').dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // Focus on class code input
+        window.addEventListener('load', () => {
+            document.getElementById('classCode').focus();
+        });
+
+            document.getElementById("backButton").addEventListener("click", () => {
+                window.location.href = "index.html";
+            });
+    </script>
 </body>
 
 </html>

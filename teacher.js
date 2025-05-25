@@ -82,3 +82,7 @@ document.querySelectorAll(".fa-google-plus-g").forEach((icon) => {
   });
 });
 
+document.getElementById("backButton").addEventListener("click", () => {
+  window.location.href = "index.html";
+});
+
